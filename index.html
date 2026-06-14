@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="אתר תדמית מקצועי וארגז כלים אינטראקטיבי לאחיות וסטודנטים בסיעוד - טיפול נמרץ, הדרכה קלינית, סימולציות ומחשבות מהשטח.">
+    <title>מרכז הדרכה קלינית וידע - טיפול נמרץ</title>
+    <!-- Google Fonts: Assistant & Rubik for clean Hebrew typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for medical and action icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+
+    <!-- Top Navigation Bar -->
+    <header class="main-header" id="mainHeader">
+        <div class="header-container">
+            <div class="logo-area">
+                <i class="fa-solid fa-heart-pulse logo-icon"></i>
+                <div class="logo-text">
+                    <span class="logo-title">טיפול נמרץ & הדרכה</span>
+                    <span class="logo-subtitle">מרכז ידע קליני וניהולי</span>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button class="menu-toggle" id="menuToggle" aria-label="פתח תפריט">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#hero" class="nav-link active" data-tab="hero">דף הבית</a></li>
+                    <li><a href="#learner-hub" class="nav-link" data-tab="learner-hub">תוצרי למידה</a></li>
+                    <li><a href="#professional-impact" class="nav-link" data-tab="professional-impact">פיתוחים קליניים</a></li>
+                    <li><a href="#blog-thoughts" class="nav-link" data-tab="blog-thoughts">מחשבות מהשטח</a></li>
+                    <li><a href="#contact" class="nav-link" data-tab="contact">צור קשר</a></li>
+                </ul>
+            </nav>
+
+            <!-- Light/Dark Mode Switcher -->
+            <button class="theme-toggle" id="themeToggle" aria-label="שינוי מצב תאורה">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-wrapper">
+
+        <!-- 1. Hero / About Section -->
+        <section id="hero" class="hero-section active-section">
+            <div class="hero-grid">
+                <div class="hero-image-container">
+                    <div class="hero-image-wrapper">
+                        <!-- Loaded from current workspace folder -->
+                        <img src="אחות_טיפול_נמרץ_עם_כיסוי_202606142218.jpeg" alt="אחות טיפול נמרץ ומדריכה קלינית" class="hero-profile-image">
+                    </div>
+                    <div class="badge-card floating-badge-1">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <span>קורס על-בסיסי</span>
+                    </div>
+                    <div class="badge-card floating-badge-2">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>תואר שני בסיעוד</span>
+                    </div>
+                </div>
+
+                <div class="hero-content">
+                    <span class="hero-pre-title">כרטיס ביקור מקצועי & פורטל לימודי</span>
+                    <h1 class="hero-title">הדרכה קלינית מתקדמת <br><span class="highlight-text">בטיפול נמרץ</span></h1>
+                    <p class="hero-description">
+                        ברוכים הבאים למרכז הידע וההכשרה שלי. כאחות מוסמכת בטיפול נמרץ ומדריכה קלינית, אני מאמינה בסינרגיה שבין מצוינות קלינית בשטח לבין הוראה ממוקדת-לומד. כאן תמצאו פרוטוקולים מקוצרים, סימולציות מבוססות מקרים קליניים ומשאבי הדרכה שנועדו להקנות לכם ביטחון ומיומנות ברגעי האמת.
+                    </p>
+                    <div class="hero-action-buttons">
+                        <a href="#learner-hub" class="btn btn-primary" onclick="switchToSection('learner-hub')">
+                            <i class="fa-solid fa-toolbox"></i> כניסה לארגז הכלים
+                        </a>
+                        <a href="#contact" class="btn btn-outline" onclick="switchToSection('contact')">
+                            <i class="fa-solid fa-paper-plane"></i> יצירת קשר מהירה
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats/Highlights Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper color-cyan">
+                        <i class="fa-solid fa-kit-medical"></i>
+                    </div>
+                    <h3 class="stat-value">פרוטוקולים</h3>
+                    <p class="stat-label">סכמות קליניות מקוצרות לעבודה בשטח</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper color-blue">
+                        <i class="fa-solid fa-laptop-medical"></i>
+                    </div>
+                    <h3 class="stat-value">סימולציות</h3>
+                    <p class="stat-label">תיאורי מקרה קליניים עם פידבק מיידי</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper color-purple">
+                        <i class="fa-solid fa-route"></i>
+                    </div>
+                    <h3 class="stat-value">קליטה מובנית</h3>
+                    <p class="stat-label">מודל הדרכה וליווי לצוותים חדשים</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper color-green">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <h3 class="stat-value">מחשבות מהשטח</h3>
+                    <p class="stat-label">ניתוח אירועים קליניים וחידושים אקדמיים</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 2. Learner-Centered Section (תוצרי למידה) -->
+        <section id="learner-hub" class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Learner-Centered</span>
+                <h2 class="section-title">ארגז כלים למידה (תוצרי למידה)</h2>
+                <p class="section-subtitle">עזרי למידה דינמיים, פרוטוקולים מהירים וסימולציות קליניות לסטודנטים ולאחיות</p>
+            </div>
+
+            <!-- Sub Navigation Tabs for Learner Hub -->
+            <div class="hub-tabs-container">
+                <button class="hub-tab-btn active" data-hub-tab="cheat-sheets">
+                    <i class="fa-solid fa-file-invoice"></i> פרוטוקולים מקוצרים (Cheat Sheets)
+                </button>
+                <button class="hub-tab-btn" data-hub-tab="step-by-step">
+                    <i class="fa-solid fa-list-check"></i> מדריכי "צעד-אחר-צעד"
+                </button>
+                <button class="hub-tab-btn" data-hub-tab="clinical-simulations">
+                    <i class="fa-solid fa-brain"></i> סימולציות לתרגול עצמי
+                </button>
+                <button class="hub-tab-btn" data-hub-tab="links-library">
+                    <i class="fa-solid fa-link"></i> ספריית קישורים מומלצים
+                </button>
+            </div>
+
+            <!-- Tab Content 1: Cheat Sheets -->
+            <div class="hub-tab-content active-tab" id="cheat-sheets">
+                <div class="cards-grid">
+                    <!-- Cheat Sheet Card 1 -->
+                    <div class="interactive-card cheat-sheet-card">
+                        <div class="card-icon"><i class="fa-solid fa-circle-h"></i></div>
+                        <h3 class="card-title">סדר פעולות בהחייאה מתקדמת (ALS)</h3>
+                        <p class="card-text">תרשים זרימה ויזואלי מהיר לניהול דום לב במבוגרים ביחידה לטיפול נמרץ - מקצבים שוקביליים ושאינם שוקביליים.</p>
+                        <button class="btn-card-action" onclick="openCheatSheetModal('als')">
+                            צפייה בפרוטוקול המלא <i class="fa-solid fa-expand"></i>
+                        </button>
+                    </div>
+
+                    <!-- Cheat Sheet Card 2 -->
+                    <div class="interactive-card cheat-sheet-card">
+                        <div class="card-icon"><i class="fa-solid fa-wind"></i></div>
+                        <h3 class="card-title">הכנה להנשמה מלאכותית (Intubation Prep)</h3>
+                        <p class="card-text">רשימת תיוג (Checklist) להערכות מהירה: ציוד נדרש, הכנת תרופות להרדמה והרפיה, ופרה-אוקסיגנציה נכונה.</p>
+                        <button class="btn-card-action" onclick="openCheatSheetModal('intubation')">
+                            צפייה בפרוטוקול המלא <i class="fa-solid fa-expand"></i>
+                        </button>
+                    </div>
+
+                    <!-- Cheat Sheet Card 3 -->
+                    <div class="interactive-card cheat-sheet-card">
+                        <div class="card-icon"><i class="fa-solid fa-wave-square"></i></div>
+                        <h3 class="card-title">ניהול קווי עורק וניטור פולשני</h3>
+                        <p class="card-text">הנחיות קליניות להרכבת מתמר לחץ דם עורקי ישיר, שטיפת המערכת בלחץ, כיול לאפס (Zeroing) ומניעת זיהומים.</p>
+                        <button class="btn-card-action" onclick="openCheatSheetModal('art-line')">
+                            צפייה בפרוטוקול המלא <i class="fa-solid fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 2: Step-by-Step Guides -->
+            <div class="hub-tab-content" id="step-by-step">
+                <div class="step-guide-layout">
+                    <!-- Guide Selector Side Menu -->
+                    <div class="guide-selector">
+                        <button class="guide-select-btn active" data-guide-id="monitor-connection">
+                            <i class="fa-solid fa-circle-chevron-left"></i> חיבור ואיפוס מוניטור פולשני
+                        </button>
+                        <button class="guide-select-btn" data-guide-id="surgical-prep">
+                            <i class="fa-solid fa-circle-chevron-left"></i> הכנה לפרוצדורה ניתוחית ביחידה
+                        </button>
+                    </div>
+
+                    <!-- Guide Display Area -->
+                    <div class="guide-display-panel" id="guideDisplayPanel">
+                        <!-- Guide content is populated dynamically via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 3: Simulations -->
+            <div class="hub-tab-content" id="clinical-simulations">
+                <div class="sim-wrapper">
+                    <div class="sim-header">
+                        <div class="sim-title-group">
+                            <i class="fa-solid fa-user-injured sim-icon"></i>
+                            <div>
+                                <h3 class="sim-main-title">סימולציה קלינית: זיהוי וטיפול ראשוני בספסיס</h3>
+                                <span class="sim-difficulty">רמת קושי: בינוני-מתקדם</span>
+                            </div>
+                        </div>
+                        <div class="sim-score-badge" id="simScoreBadge">ציון: 0 / 100</div>
+                    </div>
+
+                    <div class="sim-body" id="simBody">
+                        <!-- Simulation Screen (Dynamic via app.js) -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 4: Links Library -->
+            <div class="hub-tab-content" id="links-library">
+                <div class="library-toolbar">
+                    <div class="search-input-wrapper">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="librarySearch" placeholder="חפש הנחיות, איגודים, או נושאים קליניים..." class="form-control">
+                    </div>
+                    <div class="filter-tabs">
+                        <button class="filter-btn active" data-filter="all">הכל</button>
+                        <button class="filter-btn" data-filter="guidelines">הנחיות רשמיות</button>
+                        <button class="filter-btn" data-filter="associations">איגודים מקצועיים</button>
+                        <button class="filter-btn" data-filter="academic">מאגרי ידע אקדמיים</button>
+                    </div>
+                </div>
+
+                <div class="links-list" id="linksList">
+                    <!-- Links populated by JS -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 3. Professional Impact Section (פיתוחים שונים) -->
+        <section id="professional-impact" class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Professional Impact</span>
+                <h2 class="section-title">פיתוחים ומנהיגות קלינית</h2>
+                <p class="section-subtitle">ראיית מאקרו קלינית, תוכניות הכשרה מתודולוגיות והערכות למצבי חירום</p>
+            </div>
+
+            <div class="impact-grid">
+                <!-- Column 1: Emergency Preparedness -->
+                <div class="impact-card">
+                    <div class="impact-card-header color-red">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <h3>פרויקטים בתחום החירום והארגון</h3>
+                    </div>
+                    <div class="impact-card-body">
+                        <h4 class="impact-subtitle">תוכנית הערכות לתרחיש רב-נפגעים (אר"ן) בטיפול נמרץ</h4>
+                        <p>התאמת המחלקה למצבי חירום לאומיים דרך ניהול סיכונים ויצירת גמישות תפעולית. הפרויקט כולל מנגנון פינוי מובנה, ניוד צוותים וניהול ציוד ייעודי:</p>
+                        <ul class="impact-list">
+                            <li><strong>פינוי מיטות מהיר:</strong> פרוטוקול למיון והעברה של מטופלים יציבים למחלקות פנימיות.</li>
+                            <li><strong>מערך זימון צוותים:</strong> לוגיקת סבבים לניהול משמרות כפולות ומניעת שחיקה באסון מתמשך.</li>
+                            <li><strong>פריסת ציוד קריטי:</strong> הקמת עמדות עבודה ייעודיות לציוד החייאה והנשמה זמין מחוץ למחסן.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Column 2: Onboarding Roadmap -->
+                <div class="impact-card">
+                    <div class="impact-card-header color-teal">
+                        <i class="fa-solid fa-route"></i>
+                        <h3>תוכניות הכשרה וקליטה (Onboarding)</h3>
+                    </div>
+                    <div class="impact-card-body">
+                        <h4 class="impact-subtitle">מודל Preceptorship: מפת הדרכים ל-12 שבועות</h4>
+                        <p>מתודולוגיה מובנית ושלבית המיועדת להפחית חרדה, להעצים ביטחון עצמי ולהבטיח מיומנות קלינית גבוהה באחיות חדשות:</p>
+                        
+                        <div class="roadmap-timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-badge">שבוע 1-2</div>
+                                <div class="timeline-content">
+                                    <h5>אוריינטציה והסתגלות סביבתית</h5>
+                                    <p>היכרות עם מבנה היחידה, מערכת המידע הרפואי (Chameleon), תרופות קריטיות וחישובי מינונים נפוצים.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-badge">שבוע 3-6</div>
+                                <div class="timeline-content">
+                                    <h5>מטופלים מונשמים וניטור בסיסי</h5>
+                                    <p>התנסות מעשית בטיפול בחולה מונשם יציב, ניקוי הפרשות, פרה-אוקסיגנציה, ומעקב אחר לחץ דם פולשני.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-badge">שבוע 7-10</div>
+                                <div class="timeline-content">
+                                    <h5>קליטת מקרים מורכבים והחייאה</h5>
+                                    <p>טיפול בחולים לא יציבים המודינמית, איזון משאבות תרופות ואזואקטיביות, ואימון השתלבות בצוות החייאה פעיל.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-badge">שבוע 11-12</div>
+                                <div class="timeline-content">
+                                    <h5>עצמאות קלינית מבוקרת וסיכום</h5>
+                                    <p>ניהול מלא של המטופלים תחת פיקוח פסיבי של החונכ/ת, הערכת כישורים רשמית (Competency checklist) ושיחת משוב.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lectures & Slides Sub-Section -->
+            <div class="lectures-container">
+                <div class="sub-section-title">
+                    <i class="fa-solid fa-chalkboard-user"></i> הרצאות ומצגות מבית הספר לסיעוד
+                </div>
+                <div class="lectures-grid">
+                    <!-- Lecture 1 -->
+                    <div class="lecture-card">
+                        <div class="lecture-details">
+                            <span class="lecture-meta">הרצאה לציבור הרחב ולסטודנטים</span>
+                            <h4 class="lecture-title">אפידמיולוגיה ומניעת זיהומים בטיפול נמרץ</h4>
+                            <p class="lecture-desc">הסבר מונגש ומדעי על התפתחות חיידקים עמידים בבתי חולים, דרכי מניעה וחשיבות שמירת הגיינה קפדנית ביחידות טיפול נמרץ.</p>
+                        </div>
+                        <button class="btn btn-sm-outline" onclick="openLecturePreview('epidemiology')">
+                            <i class="fa-solid fa-desktop"></i> לצפייה בראשי פרקים
+                        </button>
+                    </div>
+
+                    <!-- Lecture 2 -->
+                    <div class="lecture-card">
+                        <div class="lecture-details">
+                            <span class="lecture-meta">קורס ניהול מצבי אסון</span>
+                            <h4 class="lecture-title">ניהול מצבי אסון ורפואת חירום במאקרו</h4>
+                            <p class="lecture-desc">עקרונות המיון הקליני (Triage) באירועים המוניים, פריסה לוגיסטית מהירה של צוותי רפואה והתאמת פרוטוקולים לעומס מערכתי קיצוני.</p>
+                        </div>
+                        <button class="btn btn-sm-outline" onclick="openLecturePreview('disaster')">
+                            <i class="fa-solid fa-desktop"></i> לצפייה בראשי פרקים
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 4. Blog & Thoughts (מחשבות מהשטח) -->
+        <section id="blog-thoughts" class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Blog & Thoughts</span>
+                <h2 class="section-title">מחשבות מהשטח</h2>
+                <p class="section-subtitle">למידה מאירועים קליניים (Debriefing) וסקירת חידושים בעולם הטיפול הנמרץ</p>
+            </div>
+
+            <div class="blog-layout">
+                <!-- Main Blog Post Area -->
+                <div class="blog-posts-list">
+                    <!-- Post 1: Debriefing -->
+                    <article class="blog-post-card">
+                        <div class="post-meta-tags">
+                            <span class="post-tag tag-debrief"><i class="fa-solid fa-clipboard-question"></i> ניתוח אירוע קליני (אנונימי)</span>
+                            <span class="post-date">12 ביוני 2026</span>
+                        </div>
+                        <h3 class="post-title">למידה מכשל: זיהוי וניהול של שוק לבבי לאחר גמילה מהנשמה</h3>
+                        <p class="post-excerpt">
+                            אירוע של מטופל מונשם יציב שעבר הערכת גמילה, אך קרס המודינמית 20 דקות לאחר העברתו לנשימה עצמונית עם T-Piece. ניתוח רטרוספקטיבי של הפיזיולוגיה והאינטראקציה בין לחץ חזה שלילי לתפוקת לב שמאלי...
+                        </p>
+                        <div class="post-expanded-content" id="postContent1">
+                            <blockquote class="debrief-quote">
+                                <strong>האירוע:</strong> מטופל בן 72 מונשם מזה 5 ימים בשל דלקת ריאות. המדדים לקראת גמילה (RSBI, P0.1, SpO2) היו תקינים. המטופל נותק מהמנשם וחובר לצינור T. בחלוף 20 דקות פיתח טכיקרדיה של 125 פעימות בדקה, תת-לחץ דם 85/40 ממ"כ, דיאפורזיס ואי שקט קשה.
+                            </blockquote>
+                            <p>
+                                <strong>הפיזיולוגיה מאחורי האירוע:</strong> במעבר מהנשמה בלחץ חיובי (התומכת בלב שמאל על ידי הפחתת לחץ העבודה והגברת פריקת הלב) לנשימה עצמונית בלחץ שלילי (המגבירה את החזר הדם הוורידי ומעלה את העומס על החדר השמאלי - Afterload), נוצר עומס פתאומי על שריר הלב. המטופל פיתח אי ספיקת לב שמאלית חריפה עקב הלחץ השלילי המוגבר בריאות.
+                            </p>
+                            <div class="debrief-highlights">
+                                <h5>מה למדנו ואיך נשתפר לפעם הבאה?</h5>
+                                <ul>
+                                    <li><i class="fa-solid fa-circle-exclamation text-red"></i> <strong>ערנות בשלבי מעבר:</strong> מעבר להנשמה עצמונית הוא מנוע מאמץ פיזיולוגי כבד. יש לבצע מעקב המודינמי צמוד כולל אק"ג ומוניטור מולשני בדקות הראשונות.</li>
+                                    <li><i class="fa-solid fa-circle-check text-green"></i> <strong>השימוש ב-Ultra-Sound:</strong> שימוש בבדיקת אקו לב ממוקדת (Focus) לפני הגמילה להערכת תפקוד סיסטולי של חדר שמאל יכולה לסייע בניבוי כשל כזה.</li>
+                                    <li><i class="fa-solid fa-circle-check text-green"></i> <strong>גמילה מדורגת:</strong> במטופלים עם היסטוריה לבבית מומלץ לשקול גמילה מדורגת באמצעות תמיכת לחץ נמוכה (Pressure Support) במקום חיבור ישיר לצינור T.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn-read-more" onclick="togglePostContent(1)">
+                            <span class="btn-text">קרא את הניתוח המלא</span> <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </article>
+
+                    <!-- Post 2: Innovation -->
+                    <article class="blog-post-card">
+                        <div class="post-meta-tags">
+                            <span class="post-tag tag-innov"><i class="fa-solid fa-microchip"></i> חידושים בטיפול נמרץ</span>
+                            <span class="post-date">1 ביוני 2026</span>
+                        </div>
+                        <h3 class="post-title">שילוב מערכות בינה מלאכותית (AI) לניבוי מוקדם של שוק ספטי</h3>
+                        <p class="post-excerpt">
+                            איך אלגוריתמים המבוססים על למידת מכונה משנים את כללי המשחק ביחידות לטיפול נמרץ? סקירה של המחקרים האחרונים המראים ניבוי הידרדרות קלינית 6-8 שעות לפני הופעת התסמינים הקלאסיים, ותפקיד האחות...
+                        </p>
+                        <div class="post-expanded-content" id="postContent2">
+                            <p>
+                                היכולת לזהות ספסיס בשלב מוקדם היא קריטית להפחתת תמותה ביחידות טיפול נמרץ. לאחרונה, הוכנסו לשימוש מערכות AI מבוססות רשתות עצביות המנתחות בזמן אמת עשרות פרמטרים המודינמיים ומעבדתיים של המטופל המחובר למוניטור ולתיק הרפואי.
+                            </p>
+                            <h5>תוצאות ומדדים קליניים:</h5>
+                            <p>
+                                המערכת לומדת את השינויים המיקרוסקופיים בקצב הלב, בלחצי הדם וברמות החמצן, ומצליחה להתריע על סיכון גבוה לשוק ספטי עם רגישות של כ-85% עוד לפני שהמטופל מפתח חום גבוה או תת-לחץ דם משמעותי.
+                            </p>
+                            <p>
+                                <strong>הקשר להדרכה וסיעוד:</strong> כניסת הטכנולוגיה מחייבת אחיות לפתח חשיבה ביקורתית גבוהה יותר. המערכת אינה מחליפה את שיקול הדעת הקליני אלא מספקת כלי עזר תומך החלטה המכוון את האחות לבדוק בדיקות דם או תרביות מוקדם מהרגיל ובכך להציל חיים.
+                            </p>
+                        </div>
+                        <button class="btn-read-more" onclick="togglePostContent(2)">
+                            <span class="btn-text">קרא את הכתבה המלאה</span> <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </article>
+                </div>
+
+                <!-- Blog Sidebar -->
+                <div class="blog-sidebar">
+                    <div class="sidebar-widget">
+                        <h4>קטגוריות</h4>
+                        <ul class="sidebar-links">
+                            <li><a href="#" onclick="filterBlog('all'); return false;"><i class="fa-solid fa-tags"></i> הכל</a></li>
+                            <li><a href="#" onclick="filterBlog('debrief'); return false;"><i class="fa-solid fa-clipboard-question"></i> ניתוח אירועים (Debriefing)</a></li>
+                            <li><a href="#" onclick="filterBlog('innov'); return false;"><i class="fa-solid fa-microchip"></i> חידושים בטיפול נמרץ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h4>טיפ קליני מהיר</h4>
+                        <div class="clinical-tip-box">
+                            <i class="fa-solid fa-lightbulb tip-icon"></i>
+                            <p>במטופל שמפתח אי שקט חריף תחת הנשמה - אל תרוצו ישר להוסיף סדציה. בצעו תחילה הערכה מהירה של נתיב האוויר ומערכת ההנשמה לשלילת חסימה או חזה אוויר (פרוטוקול DOPE).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 5. Contact Section -->
+        <section id="contact" class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Contact Me</span>
+                <h2 class="section-title">צור קשר ושיתופי פעולה</h2>
+                <p class="section-subtitle">לפניות בנושא הרצאות, סדנאות הדרכה, ייעוץ קליני או שאלות מקצועיות</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Contact Form Card -->
+                <div class="contact-form-wrapper">
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">שם מלא</label>
+                                <input type="text" id="contactName" required placeholder="ישראל ישראלי" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">כתובת אימייל</label>
+                                <input type="email" id="contactEmail" required placeholder="name@domain.com" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactSubject">נושא הפנייה</label>
+                            <input type="text" id="contactSubject" required placeholder="למשל: הזמנת הרצאה לבית הספר לסיעוד" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">תוכן ההודעה</label>
+                            <textarea id="contactMessage" rows="5" required placeholder="כאן ניתן לכתוב את פנייתך המפורטת..." class="form-control"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fa-solid fa-paper-plane"></i> שליחת הודעה
+                        </button>
+                    </form>
+                    <div class="form-success-message" id="formSuccess">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>הודעתך נשלחה בהצלחה! אענה בהקדם האפשרי.</span>
+                    </div>
+                </div>
+
+                <!-- Networking / Info Card -->
+                <div class="contact-info-card">
+                    <h3>פרטי התקשרות ורשתות מקצועיות</h3>
+                    <p class="contact-intro">
+                        מוזמנים לסרוק את קוד ה-QR המצורף כדי לשמור את פרטי הקשר שלי ישירות לנייד או ליצירת קשר מהירה ברשתות המקצועיות:
+                    </p>
+                    
+                    <div class="qr-code-wrapper">
+                        <!-- Loaded from current workspace folder -->
+                        <img src="qr-code-heart (2).png" alt="קוד QR ליצירת קשר מהירה" class="contact-qr-image">
+                        <span class="qr-caption">סרקו לחיבור מקצועי מהיר</span>
+                    </div>
+
+                    <div class="contact-details-list">
+                        <div class="contact-detail-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>nursing.educator.icu@gmail.com</span>
+                        </div>
+                        <div class="contact-detail-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>יחידה לטיפול נמרץ כללי, מרכז רפואי מוביל</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span>פורטל הדרכה קלינית בטיפול נמרץ © 2026</span>
+            </div>
+            <p class="footer-credits">נבנה באמצעות אהבה ומצוינות סיעודית</p>
+        </div>
+    </footer>
+
+    <!-- Protocol Detail Modal (Shared for Cheat Sheets & Lectures) -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-box">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="סגור חלון">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-content-area" id="modalContentArea">
+                <!-- Populated dynamically by JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal()">סגור חלון</button>
+                <button class="btn btn-outline" id="printModalBtn" onclick="window.print()">
+                    <i class="fa-solid fa-print"></i> הדפסת קובץ עזר
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating CV QR Code Widget -->
+    <div class="floating-cv-widget" id="cvWidget">
+        <button class="cv-widget-toggle" id="cvWidgetToggle" aria-label="הצג קורות חיים">
+            <i class="fa-solid fa-file-pdf"></i>
+            <span class="cv-widget-text">קורות חיים CV</span>
+        </button>
+        <div class="cv-widget-card" id="cvWidgetCard">
+            <button class="cv-card-close" id="cvCardClose" aria-label="סגור">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h4>קורות חיים מקצועיים</h4>
+            <p>סרקו את קוד ה-QR לצפייה והורדה של ה-CV שלי:</p>
+            <div class="cv-qr-img-wrapper">
+                <img src="qr-code-heart (2).png" alt="קוד QR לקורות חיים" class="cv-qr-img">
+            </div>
+            <a href="qr-code-heart (2).png" download class="btn btn-sm-outline btn-block" style="justify-content: center; margin-top: 0.5rem;">
+                <i class="fa-solid fa-download"></i> הורדת קוד ה-QR
+            </a>
+        </div>
+    </div>
+
+    <!-- Application Javascript Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
