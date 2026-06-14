@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initLinksLibrary();
     initProtocols();
     initCvWidget();
+    initPdfViewer();
 });
 
 /* ==========================================================================
@@ -1107,7 +1108,7 @@ function renderProtocolsList(list) {
         let fileIcon = 'fa-file-pdf';
         
         html += `
-            <div class="protocol-file-card locked" onclick="showLockedAlert('${item.name.replace(/'/g, "\\'")}')" title="פרוטוקול חסום להורדה">
+            <div class="protocol-file-card" onclick="viewProtocolText('${item.name.replace(/'/g, "\\'")}', '${item.file.replace(/'/g, "\\'")}')" title="צפייה בפרוטוקול">
                 <div class="protocol-file-info">
                     <i class="fa-solid ${fileIcon} protocol-file-icon pdf"></i>
                     <div class="protocol-file-meta">
@@ -1115,8 +1116,8 @@ function renderProtocolsList(list) {
                         <span class="protocol-file-tag">${categoryLabel} • PDF</span>
                     </div>
                 </div>
-                <div class="btn-download-protocol locked-btn">
-                    <i class="fa-solid fa-lock"></i>
+                <div class="btn-download-protocol">
+                    <i class="fa-solid fa-eye"></i>
                 </div>
             </div>
         `;
@@ -1125,26 +1126,82 @@ function renderProtocolsList(list) {
     listContainer.innerHTML = html;
 }
 
-window.showLockedAlert = function(protocolName) {
-    const modal = document.getElementById('detailModal');
-    const contentArea = document.getElementById('modalContentArea');
-    if (modal && contentArea) {
-        contentArea.innerHTML = `
-            <div style="text-align: center; padding: 2rem;">
-                <i class="fa-solid fa-lock" style="font-size: 4.5rem; color: var(--accent-red); margin-bottom: 1.5rem; display: block; animation: pulse 2s infinite alternate;"></i>
-                <h3 style="font-size: 1.8rem; color: var(--text-color); margin-bottom: 1rem;">פרוטוקול חסוי / תחת בקרת איכות</h3>
-                <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-                    הקובץ המקורי הומר לפורמט <strong>PDF</strong> והוא שמור במערכת.
-                </p>
-                <p style="font-size: 1rem; color: var(--text-muted); line-height: 1.6;">
-                    הגישה להורדה וצפייה חיצונית בקובץ זה חסומה כעת זמנית לצורך התאמה קלינית, עדכון גרסאות סיעוד וקבלת אישור סופי מהנהלת המחלקה.
-                </p>
-            </div>
-        `;
+// Secure PDF Viewer Modal Logic
+let currentPdfZoom = 100;
+
+window.viewProtocolText = function(protocolName, filename) {
+    const modal = document.getElementById('pdfModal');
+    const titleEl = document.getElementById('pdfTitle');
+    const textContentEl = document.getElementById('pdfTextContent');
+    const zoomIndicator = document.getElementById('pdfZoomIndicator');
+    
+    if (modal && textContentEl && titleEl) {
+        // Retrieve text from protocolsContentData
+        let contentText = "תוכן הפרוטוקול אינו זמין כעת.";
+        if (typeof protocolsContentData !== 'undefined' && protocolsContentData[filename]) {
+            contentText = protocolsContentData[filename];
+        }
+        
+        titleEl.textContent = protocolName;
+        textContentEl.textContent = contentText;
+        
+        // Reset zoom
+        currentPdfZoom = 100;
+        if (zoomIndicator) zoomIndicator.textContent = '100%';
+        textContentEl.style.fontSize = '1.05rem';
+        
         modal.classList.add('active-modal');
         document.body.style.overflow = 'hidden';
     }
 };
+
+window.closePdfModal = function() {
+    const modal = document.getElementById('pdfModal');
+    if (modal) {
+        modal.classList.remove('active-modal');
+        document.body.style.overflow = 'auto';
+    }
+};
+
+window.zoomPdf = function(direction) {
+    const textContentEl = document.getElementById('pdfTextContent');
+    const zoomIndicator = document.getElementById('pdfZoomIndicator');
+    
+    if (direction === 'in') {
+        if (currentPdfZoom < 180) currentPdfZoom += 10;
+    } else if (direction === 'out') {
+        if (currentPdfZoom > 70) currentPdfZoom -= 10;
+    }
+    
+    if (zoomIndicator) zoomIndicator.textContent = currentPdfZoom + '%';
+    if (textContentEl) {
+        textContentEl.style.fontSize = (currentPdfZoom / 100) * 1.05 + 'rem';
+    }
+};
+
+function initPdfViewer() {
+    const pdfCloseBtn = document.getElementById('pdfCloseBtn');
+    const pdfModal = document.getElementById('pdfModal');
+    const pdfPageElement = document.getElementById('pdfPageElement');
+    
+    if (pdfCloseBtn) {
+        pdfCloseBtn.addEventListener('click', closePdfModal);
+    }
+    
+    if (pdfModal) {
+        pdfModal.addEventListener('click', (e) => {
+            if (e.target.id === 'pdfModal') {
+                closePdfModal();
+            }
+        });
+    }
+    
+    if (pdfPageElement) {
+        pdfPageElement.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+    }
+}
 
 /* ==========================================================================
    11. Floating CV QR Widget Logic

@@ -193,10 +193,10 @@
 
                 <!-- 75 Departmental Protocols Library -->
                 <div class="sub-section-title" id="protocols-library-title">
-                    <i class="fa-solid fa-folder-open"></i> ספריית פרוטוקולים מחלקתיים להורדה (75 מסמכים)
+                    <i class="fa-solid fa-folder-open"></i> ספריית פרוטוקולים מחלקתיים - לצפייה בלבד (75 מסמכים)
                 </div>
                 <p class="section-subtitle" style="text-align: right; margin-bottom: 2rem; max-width: none;">
-                    לחצו על הפרוטוקול להורדה ישירה של הקובץ המקורי כפי שהועלה למערכת.
+                    לחצו על הפרוטוקול לצפייה ישירה ומאובטחת במסמך המלא בפורמט PDF (הורדה חסומה).
                 </p>
 
                 <div class="protocol-toolbar">
@@ -578,6 +578,40 @@
         </div>
     </div>
 
+    <!-- Secure PDF Viewer Modal -->
+    <div class="modal-overlay" id="pdfModal">
+        <div class="pdf-viewer-container">
+            <div class="pdf-viewer-toolbar">
+                <div class="pdf-toolbar-right">
+                    <i class="fa-solid fa-file-pdf pdf-toolbar-icon"></i>
+                    <span class="pdf-toolbar-title" id="pdfTitle">שם הפרוטוקול</span>
+                    <span class="pdf-badge">PDF • צפייה בלבד</span>
+                </div>
+                <div class="pdf-toolbar-center">
+                    <button class="pdf-zoom-btn" onclick="zoomPdf('out')" title="הקטן זום"><i class="fa-solid fa-minus"></i></button>
+                    <span class="pdf-zoom-level" id="pdfZoomIndicator">100%</span>
+                    <button class="pdf-zoom-btn" onclick="zoomPdf('in')" title="הגדל זום"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <div class="pdf-toolbar-left">
+                    <div class="pdf-secure-notice">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>מסמך מאובטח (הורדה חסומה)</span>
+                    </div>
+                    <button class="pdf-close-btn" id="pdfCloseBtn" aria-label="סגור תצוגה">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="pdf-viewer-content" id="pdfContentArea">
+                <div class="pdf-page" id="pdfPageElement">
+                    <div class="pdf-text-container" id="pdfTextContent">
+                        <!-- Content loaded dynamically via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Floating CV QR Code Widget -->
     <div class="floating-cv-widget" id="cvWidget">
         <button class="cv-widget-toggle" id="cvWidgetToggle" aria-label="הצג קורות חיים">
@@ -599,6 +633,8 @@
         </div>
     </div>
 
+    <!-- Protocols Text Data -->
+    <script src="protocols_content.js"></script>
     <!-- Application Javascript Logic -->
     <script src="app.js"></script>
 </body>
