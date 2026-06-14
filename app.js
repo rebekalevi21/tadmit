@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initStepGuides();
     initSimulation();
     initLinksLibrary();
+    initProtocols();
     initCvWidget();
 });
 
@@ -940,6 +941,176 @@ window.handleContactSubmit = function(event) {
         }, 6000);
     }, 1200);
 };
+
+/* ==========================================================================
+   10.5. Departmental Protocols Database & Logic
+   ========================================================================== */
+const protocolsData = [
+    { name: 'Propofol (פרופופול) - סדציה', file: 'PROPOFOL.doc', category: 'sedation', type: 'doc' },
+    { name: 'Dexmedetomidine (פרסדקס) - סדציה', file: 'Dexmedetomidine.doc', category: 'sedation', type: 'doc' },
+    { name: 'Midazolam (דורמיקום) - סדציה', file: 'midazolam.docx', category: 'sedation', type: 'docx' },
+    { name: 'Haloperidol (הלידול) - סדציה/אנטי-פסיכוטי', file: 'Halidol (1).doc', category: 'sedation', type: 'doc' },
+    { name: 'Ketamine (קטמין) - סדציה/אנסטזיה', file: 'Ketamine.docx', category: 'sedation', type: 'docx' },
+    { name: 'Atracurium (טראקריום) - מרפה שרירים', file: 'Atracurium - tracrium 2016.docx', category: 'sedation', type: 'docx' },
+    { name: 'Rocuronium (רוקורוניום - אסמרון)', file: 'Rocuronium - esmeron.docx', category: 'sedation', type: 'docx' },
+    { name: 'מרפי שרירים (Muscular Relaxants) בטיפול נמרץ', file: 'Muscular relaxants.docx', category: 'sedation', type: 'docx' },
+    
+    { name: 'Fentanyl (פנטניל) - אנלגטיקה', file: 'Fentanyl.doc', category: 'analgesia', type: 'doc' },
+    { name: 'Morphine (מורפין) - אנלגטיקה', file: 'morphine.doc', category: 'analgesia', type: 'doc' },
+    { name: 'Remifentanil (רמיפנטניל) - אנלגטיקה', file: 'remifentanil.docx', category: 'analgesia', type: 'docx' },
+    { name: 'Methadone (מתדון) - גמילה ואנלגזיה 2024', file: 'METHADONE 2024.docx', category: 'analgesia', type: 'docx' },
+    { name: 'Tramadol (טרמדול) - אנלגטיקה', file: 'TRAMADOL.docx', category: 'analgesia', type: 'docx' },
+    
+    { name: 'טיפול בהיפרקלמיה (Hyperkalemia)', file: 'HYPERKALEMIA.docx', category: 'electrolytes', type: 'docx' },
+    { name: 'תיקון אשלגן (Potassium Replacement)', file: 'POTASSIUM REPLACEMENT final.doc', category: 'electrolytes', type: 'doc' },
+    { name: 'תיקון זרחן (Phosphate Replacement) 2022', file: 'Phosphate replacement 2022.docx', category: 'electrolytes', type: 'docx' },
+    { name: 'מגנזיום לרעלת הריון (Magnesium Pre-eclampsia)', file: 'Mg for pre-eclampsia 10g in 100cc.doc', category: 'electrolytes', type: 'doc' },
+    { name: 'אלגוריתם טיפול בהיפונטרמיה (Hyponatremia)', file: 'Hyponatremia treatment algorithm.pptx', category: 'electrolytes', type: 'pptx' },
+    { name: 'סליין היפרטוני (Hypertonic Saline)', file: 'hypertonic saline.doc', category: 'electrolytes', type: 'doc' },
+    { name: 'Addamel N (אדאמל N) - מיקרו-אלמנטים', file: 'Addamel N.docx', category: 'electrolytes', type: 'docx' },
+    { name: 'פרוטוקול ציטראט ל-CRRT (Citrate protocol CVVHDF)', file: 'Citrate protocol CVVHDF _.docx', category: 'electrolytes', type: 'docx' },
+    
+    { name: 'Actemra (אקטמרה) - טיפול בקורונה', file: 'ACTEMRA - COVID-19.docx', category: 'other', type: 'docx' },
+    { name: 'Amiodarone (אמיודארון) - הפרעות קצב', file: 'AMIODARONE.docx', category: 'other', type: 'docx' },
+    { name: 'Dosing Guide: אנטיביוטיקה ב-CRRT', file: 'CRRT antibiotics -  Dosing Guide 2017-08-08.pdf', category: 'other', type: 'pdf' },
+    { name: 'מרשם והנחיות ל-CRRT', file: 'CRRT prescription.docx', category: 'other', type: 'docx' },
+    { name: 'Dobutamine (דובוטמין) - תמיכה המודינמית', file: 'Dobutamine 2019.docx', category: 'other', type: 'docx' },
+    { name: 'Dopamine (דופמין) - תמיכה אינוטרופית', file: 'Dopamine Hcl.doc', category: 'other', type: 'doc' },
+    { name: 'Erythromycin (אריתרומיצין) - פרוקינטי', file: 'Erythromycin prokinetic agent.doc', category: 'other', type: 'doc' },
+    { name: 'Esmolol (אסמולול) - חוסם בטא מהיר', file: 'Esmolol.doc', category: 'other', type: 'doc' },
+    { name: 'Factor VIIa (נובוסבן) - מניעת דימום', file: 'FACTOR VIIA.doc', category: 'other', type: 'doc' },
+    { name: 'טיפול פיברינוליטי באמפיאמה (Empyema) 2024', file: 'FIBRINOLYTIC TREATMENT OF EMPYEMA 2024.docx', category: 'other', type: 'docx' },
+    { name: 'Furosemide (פוסיד) - משתן', file: 'FUROSEMIDE.doc', category: 'other', type: 'doc' },
+    { name: 'Ganciclovir (גנציקלוביר) - אנטי-ויראלי', file: 'Ganciclovir.docx', category: 'other', type: 'docx' },
+    { name: 'מדידת לחץ תוך-בטני (IAP)', file: 'IAP measurement.docx', category: 'other', type: 'docx' },
+    { name: 'Immunoglobulin Intratect (אימונוגלובולינים)', file: 'Immunoglobulin  intratect.doc', category: 'other', type: 'doc' },
+    { name: 'רגישות ליוד ובדיקות CT 2019', file: 'Iodine allergy and CT 2019.docx', category: 'other', type: 'docx' },
+    { name: 'Isuprel (איזופרל) - טכיקרדיה / חסם הולכה', file: 'Isuprel.doc', category: 'other', type: 'doc' },
+    { name: 'Metoprolol (לופרסור) - חוסם בטא', file: 'Metoprolol.doc', category: 'other', type: 'doc' },
+    { name: 'NAC Parvolex (פרוולקס) - הרעלת אקמול', file: 'NAC  parvolex.docx', category: 'other', type: 'docx' },
+    { name: 'Neostigmine (נאוסטיגמין) - שיתוק מעיים 2021', file: 'NEOSTIGMINE 2021.docx', category: 'other', type: 'docx' },
+    { name: 'Nexium (נקסיום) - סותם חומצה', file: 'Nexium.doc', category: 'other', type: 'doc' },
+    { name: 'Nitroglycerine (ניטרו) - ואזודילטור', file: 'Nitroglycerine.doc', category: 'other', type: 'doc' },
+    { name: 'פרוטוקול שכיבה על הבטן (Prone Position)', file: 'PRONE POSITION.docx', category: 'other', type: 'docx' },
+    { name: 'Promethazine (פנרגן) - נוגד אלרגיה', file: 'Promethazine  (phenergan).docx', category: 'other', type: 'docx' },
+    { name: 'Septrin (ספטרין) - אנטיביוטיקה', file: 'SEPTRIN.pdf', category: 'other', type: 'pdf' },
+    { name: 'אינהלציית סלבוטמול רציפה (Aerogen)', file: 'Salbutamol continuous via aerogen .docx', category: 'other', type: 'docx' },
+    { name: 'טיפול ב-TPA (ממיס קרישים) בטיפול נמרץ', file: 'TPA ????? ?????  בטיפול נמרץ .docx', category: 'other', type: 'docx' },
+    { name: 'Tranexamic Acid (הקסקפרון) - נוגד דימום', file: 'Tranexamic acid - hexakapron.doc', category: 'other', type: 'doc' },
+    { name: 'Valproic Acid (דפאלפט / חומצה ולפרואית)', file: 'Valproic acid.docx', category: 'other', type: 'docx' },
+    { name: 'Zavicefta (זאביצפטה) - אנטיביוטיקה מתקדמת', file: 'ZAVICEFTA.docx', category: 'other', type: 'docx' },
+    { name: 'Acyclovir (אציקלוביר) - אנטי-ויראלי', file: 'acyclovir.doc', category: 'other', type: 'doc' },
+    { name: 'Adrenaline (אדרנלין) - תמיכה המודינמית', file: 'adrenaline.docx', category: 'other', type: 'docx' },
+    { name: 'Amphotericin B (אמפוטריצין B) - אנטי-פטרייתי', file: 'amphotericin protocol.doc', category: 'other', type: 'doc' },
+    { name: 'Azithromycin (אזיתרומיצין) - אנטיביוטיקה', file: 'azithromycin.pdf', category: 'other', type: 'pdf' },
+    { name: 'Cloxacillin (קלוכסצילין) - אנטיביוטיקה', file: 'cloxacillin.docx', category: 'other', type: 'docx' },
+    { name: 'פרוטוקולי טיפול בקורונה 2021', file: 'covid 19 TREATMENT PROTOCOLS 2021February.docx', category: 'other', type: 'docx' },
+    { name: 'Dantrolene (דנטרולן) - היפרתרמיה ממאירה', file: 'dantrolene reconstitution2012.pdf', category: 'other', type: 'pdf' },
+    { name: 'Heparin (הפרין) - פרוטוקול 80-100', file: 'heparin 80 -100.doc', category: 'other', type: 'doc' },
+    { name: 'Heparin (הפרין) - פרוטוקול 80-100 (עותק)', file: 'heparin 80 -100-1.doc', category: 'other', type: 'doc' },
+    { name: 'Heparin (הפרין) - פרוטוקול PTT 60-80', file: 'heparin PTT 60 - 80.doc', category: 'other', type: 'doc' },
+    { name: 'Heparin (הפרין) - פרוטוקול PTT 60-80 (עותק)', file: 'heparin PTT 60 - 80-1.doc', category: 'other', type: 'doc' },
+    { name: 'הפרין בניטור דיאליזה (Hemofiltration)', file: 'heparin follow up hemofiltration.doc', category: 'other', type: 'doc' },
+    { name: 'פרוטוקול אינסולין בחמצת סוכרתית (DKA)', file: 'insulin DKA protocol.docx', category: 'other', type: 'docx' },
+    { name: 'Labetalol (לביטאלול) - איזון לחץ דם', file: 'labetalol.doc', category: 'other', type: 'doc' },
+    { name: 'Lidocaine (לידוקאין / אסרצין)', file: 'lidocaine.esracine.doc', category: 'other', type: 'doc' },
+    { name: 'Noradrenaline (נוראדרנלין) - ואזופרסור', file: 'noradrenaline.doc', category: 'other', type: 'doc' },
+    { name: 'Phenytoin (פניטואין / דילנטין) - נוגד פרכוסים', file: 'phenytoin sodium.doc', category: 'other', type: 'doc' },
+    { name: 'טיפול בסטרידור (Stridor)', file: 'stridor update.doc', category: 'other', type: 'doc' },
+    { name: 'Terlipressin (טרליפרסין) - דימום דליות', file: 'terlipressin ..doc', category: 'other', type: 'doc' },
+    { name: 'Vasopressin (ואזופרסין) - שוק המודינמי', file: 'vasopressin.doc', category: 'other', type: 'doc' },
+    { name: 'Verapamil (איקקור) - הפרעות קצב', file: 'verapamil.doc', category: 'other', type: 'doc' },
+    { name: 'פרוטוקול אינסולין במשאבה (IV Insulin)', file: 'אינסולין i v.doc', category: 'other', type: 'doc' },
+    { name: 'חיבור מטופל לגז NO (חנקן חמצני)', file: 'חיבור מטופל למכשיר NO.docx', category: 'other', type: 'docx' },
+    { name: 'מניעת דלקת ריאות ממנשם (VAP)', file: 'מניעת VAP.docx', category: 'other', type: 'docx' },
+    { name: 'פרוטוקול אינסולין תת-עורי (SC Insulin)', file: 'פרוטוקול אינסולין S C.doc', category: 'other', type: 'doc' }
+];
+
+let activeProtocolFilter = 'all';
+
+function initProtocols() {
+    const searchInput = document.getElementById('protocolSearch');
+    const filterBtns = document.querySelectorAll('.protocol-filter');
+    
+    renderProtocolsList(protocolsData);
+    
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            filterProtocols();
+        });
+    }
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            activeProtocolFilter = btn.getAttribute('data-protocol-filter');
+            filterProtocols();
+        });
+    });
+}
+
+function filterProtocols() {
+    const query = document.getElementById('protocolSearch').value.toLowerCase();
+    
+    const filtered = protocolsData.filter(item => {
+        const matchesCategory = activeProtocolFilter === 'all' || item.category === activeProtocolFilter;
+        const matchesSearch = item.name.toLowerCase().includes(query) || 
+                              item.file.toLowerCase().includes(query);
+        return matchesCategory && matchesSearch;
+    });
+    
+    renderProtocolsList(filtered);
+}
+
+function renderProtocolsList(list) {
+    const listContainer = document.getElementById('protocolsList');
+    if (!listContainer) return;
+    
+    if (list.length === 0) {
+        listContainer.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">
+                <i class="fa-solid fa-triangle-exclamation" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                <p>לא נמצאו פרוטוקולים התואמים את החיפוש.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    let html = '';
+    list.forEach(item => {
+        let categoryLabel = '';
+        if (item.category === 'sedation') categoryLabel = 'סדציה';
+        else if (item.category === 'analgesia') categoryLabel = 'אנלגטיקה';
+        else if (item.category === 'electrolytes') categoryLabel = 'אלקטרוליטים';
+        else categoryLabel = 'פרוטוקול מחלקתי';
+        
+        let fileIcon = 'fa-file-lines';
+        if (item.type === 'pdf') fileIcon = 'fa-file-pdf';
+        else if (item.type === 'doc' || item.type === 'docx') fileIcon = 'fa-file-word';
+        else if (item.type === 'pptx') fileIcon = 'fa-file-powerpoint';
+        
+        const fileUrl = encodeURI(`פרוטוקולים/${item.file}`);
+        
+        html += `
+            <div class="protocol-file-card">
+                <div class="protocol-file-info">
+                    <i class="fa-solid ${fileIcon} protocol-file-icon ${item.type}"></i>
+                    <div class="protocol-file-meta">
+                        <span class="protocol-file-name" title="${item.name}">${item.name}</span>
+                        <span class="protocol-file-tag">${categoryLabel} • ${item.type.toUpperCase()}</span>
+                    </div>
+                </div>
+                <a href="${fileUrl}" download class="btn-download-protocol" title="הורדת קובץ">
+                    <i class="fa-solid fa-download"></i>
+                </a>
+            </div>
+        `;
+    });
+    
+    listContainer.innerHTML = html;
+}
 
 /* ==========================================================================
    11. Floating CV QR Widget Logic

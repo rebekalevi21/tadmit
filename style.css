@@ -1955,6 +1955,110 @@ ul {
 }
 
 /* ==========================================================================
+   17.5. Departmental Protocols Library Styles
+   ========================================================================== */
+.protocol-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.protocols-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.protocol-file-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+}
+
+.protocol-file-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary);
+    box-shadow: 0 8px 25px var(--primary-glow);
+}
+
+.protocol-file-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    overflow: hidden;
+    width: calc(100% - 50px);
+}
+
+.protocol-file-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+}
+
+.protocol-file-icon.pdf { color: var(--accent-red); }
+.protocol-file-icon.doc, .protocol-file-icon.docx { color: var(--secondary); }
+.protocol-file-icon.pptx { color: var(--accent-red); } /* fallback to red for pptx or similar */
+
+.protocol-file-meta {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.protocol-file-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.protocol-file-tag {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.btn-download-protocol {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--primary-bg);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.protocol-file-card:hover .btn-download-protocol {
+    background-color: var(--primary);
+    color: var(--text-white);
+}
+
+@media (max-width: 1024px) {
+    .protocols-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .protocols-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
    18. Floating CV Widget Styles
    ========================================================================== */
 .floating-cv-widget {

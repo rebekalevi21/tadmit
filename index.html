@@ -155,7 +155,11 @@
 
             <!-- Tab Content 1: Cheat Sheets -->
             <div class="hub-tab-content active-tab" id="cheat-sheets">
-                <div class="cards-grid">
+                <!-- Static Quick Schemas -->
+                <div class="sub-section-title">
+                    <i class="fa-solid fa-file-medical"></i> סכמות עבודה קליניות מהירות (Cheat Sheets)
+                </div>
+                <div class="cards-grid" style="margin-bottom: 4rem;">
                     <!-- Cheat Sheet Card 1 -->
                     <div class="interactive-card cheat-sheet-card">
                         <div class="card-icon"><i class="fa-solid fa-circle-h"></i></div>
@@ -185,6 +189,32 @@
                             צפייה בפרוטוקול המלא <i class="fa-solid fa-expand"></i>
                         </button>
                     </div>
+                </div>
+
+                <!-- 75 Departmental Protocols Library -->
+                <div class="sub-section-title" id="protocols-library-title">
+                    <i class="fa-solid fa-folder-open"></i> ספריית פרוטוקולים מחלקתיים להורדה (75 מסמכים)
+                </div>
+                <p class="section-subtitle" style="text-align: right; margin-bottom: 2rem; max-width: none;">
+                    לחצו על הפרוטוקול להורדה ישירה של הקובץ המקורי כפי שהועלה למערכת.
+                </p>
+
+                <div class="protocol-toolbar">
+                    <div class="search-input-wrapper">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="protocolSearch" placeholder="חפש מבין 75 פרוטוקולים מחלקתיים (למשל: פרופופול, לקטט)..." class="form-control">
+                    </div>
+                    <div class="filter-tabs" id="protocolFilterTabs">
+                        <button class="filter-btn protocol-filter active" data-protocol-filter="all">הכל</button>
+                        <button class="filter-btn protocol-filter" data-protocol-filter="sedation">סדציה</button>
+                        <button class="filter-btn protocol-filter" data-protocol-filter="analgesia">אנלגטיקה</button>
+                        <button class="filter-btn protocol-filter" data-protocol-filter="electrolytes">אלקטרוליטים</button>
+                        <button class="filter-btn protocol-filter" data-protocol-filter="other">פרוטוקולים נוספים</button>
+                    </div>
+                </div>
+
+                <div class="protocols-list" id="protocolsList">
+                    <!-- Loaded dynamically via JS -->
                 </div>
             </div>
 
