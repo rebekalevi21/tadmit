@@ -451,9 +451,20 @@ ul {
 }
 
 .hero-description {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     color: var(--text-muted);
     margin-bottom: 2.5rem;
+}
+
+.hero-description p {
+    margin-bottom: 0.8rem;
+    line-height: 1.65;
+}
+
+.hero-description p.about-lead {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 1.2rem;
 }
 
 .hero-action-buttons {
