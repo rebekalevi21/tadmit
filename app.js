@@ -1094,7 +1094,7 @@ function renderProtocolsList(list) {
         const fileUrl = encodeURI(`פרוטוקולים/${item.file}`);
         
         html += `
-            <div class="protocol-file-card">
+            <a href="${fileUrl}" download class="protocol-file-card" title="הורדת קובץ">
                 <div class="protocol-file-info">
                     <i class="fa-solid ${fileIcon} protocol-file-icon ${item.type}"></i>
                     <div class="protocol-file-meta">
@@ -1102,10 +1102,10 @@ function renderProtocolsList(list) {
                         <span class="protocol-file-tag">${categoryLabel} • ${item.type.toUpperCase()}</span>
                     </div>
                 </div>
-                <a href="${fileUrl}" download class="btn-download-protocol" title="הורדת קובץ">
+                <div class="btn-download-protocol">
                     <i class="fa-solid fa-download"></i>
-                </a>
-            </div>
+                </div>
+            </a>
         `;
     });
     

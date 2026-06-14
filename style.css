@@ -1982,6 +1982,8 @@ ul {
     justify-content: space-between;
     box-shadow: var(--card-shadow);
     transition: var(--transition);
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .protocol-file-card:hover {
