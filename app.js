@@ -113,6 +113,23 @@ function switchToSection(sectionId) {
     }
 }
 
+window.switchToHubTab = function(sectionId, tabId) {
+    switchToSection(sectionId);
+    
+    setTimeout(() => {
+        const tabBtn = document.querySelector(`.hub-tab-btn[data-hub-tab="${tabId}"]`);
+        if (tabBtn) {
+            tabBtn.click();
+            
+            // Scroll to the content for a smoother experience
+            const scrollTarget = tabId === 'cheat-sheets' ? document.getElementById('protocols-library-title') : tabBtn;
+            if (scrollTarget) {
+                scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    }, 100);
+};
+
 /* ==========================================================================
    4. Learner Hub Tab Selection
    ========================================================================== */
