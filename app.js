@@ -1103,31 +1103,48 @@ function renderProtocolsList(list) {
         else if (item.category === 'electrolytes') categoryLabel = 'אלקטרוליטים';
         else categoryLabel = 'פרוטוקול מחלקתי';
         
-        let fileIcon = 'fa-file-lines';
-        if (item.type === 'pdf') fileIcon = 'fa-file-pdf';
-        else if (item.type === 'doc' || item.type === 'docx') fileIcon = 'fa-file-word';
-        else if (item.type === 'pptx') fileIcon = 'fa-file-powerpoint';
-        
-        const fileUrl = encodeURI(`פרוטוקולים/${item.file}`);
+        // Force display to PDF as requested
+        let fileIcon = 'fa-file-pdf';
         
         html += `
-            <a href="${fileUrl}" download class="protocol-file-card" title="הורדת קובץ">
+            <div class="protocol-file-card locked" onclick="showLockedAlert('${item.name.replace(/'/g, "\\'")}')" title="פרוטוקול חסום להורדה">
                 <div class="protocol-file-info">
-                    <i class="fa-solid ${fileIcon} protocol-file-icon ${item.type}"></i>
+                    <i class="fa-solid ${fileIcon} protocol-file-icon pdf"></i>
                     <div class="protocol-file-meta">
                         <span class="protocol-file-name" title="${item.name}">${item.name}</span>
-                        <span class="protocol-file-tag">${categoryLabel} • ${item.type.toUpperCase()}</span>
+                        <span class="protocol-file-tag">${categoryLabel} • PDF</span>
                     </div>
                 </div>
-                <div class="btn-download-protocol">
-                    <i class="fa-solid fa-download"></i>
+                <div class="btn-download-protocol locked-btn">
+                    <i class="fa-solid fa-lock"></i>
                 </div>
-            </a>
+            </div>
         `;
     });
     
     listContainer.innerHTML = html;
 }
+
+window.showLockedAlert = function(protocolName) {
+    const modal = document.getElementById('detailModal');
+    const contentArea = document.getElementById('modalContentArea');
+    if (modal && contentArea) {
+        contentArea.innerHTML = `
+            <div style="text-align: center; padding: 2rem;">
+                <i class="fa-solid fa-lock" style="font-size: 4.5rem; color: var(--accent-red); margin-bottom: 1.5rem; display: block; animation: pulse 2s infinite alternate;"></i>
+                <h3 style="font-size: 1.8rem; color: var(--text-color); margin-bottom: 1rem;">פרוטוקול חסוי / תחת בקרת איכות</h3>
+                <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+                    הקובץ המקורי הומר לפורמט <strong>PDF</strong> והוא שמור במערכת.
+                </p>
+                <p style="font-size: 1rem; color: var(--text-muted); line-height: 1.6;">
+                    הגישה להורדה וצפייה חיצונית בקובץ זה חסומה כעת זמנית לצורך התאמה קלינית, עדכון גרסאות סיעוד וקבלת אישור סופי מהנהלת המחלקה.
+                </p>
+            </div>
+        `;
+        modal.classList.add('active-modal');
+        document.body.style.overflow = 'hidden';
+    }
+};
 
 /* ==========================================================================
    11. Floating CV QR Widget Logic

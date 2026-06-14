@@ -1992,6 +1992,25 @@ ul {
     box-shadow: 0 8px 25px var(--primary-glow);
 }
 
+.protocol-file-card.locked {
+    opacity: 0.9;
+}
+
+.protocol-file-card.locked:hover {
+    border-color: var(--accent-red);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.15);
+}
+
+.protocol-file-card.locked:hover .locked-btn {
+    background-color: var(--accent-red);
+    color: var(--text-white);
+}
+
+.locked-btn {
+    background-color: var(--border-color) !important;
+    color: var(--text-muted) !important;
+}
+
 .protocol-file-info {
     display: flex;
     align-items: center;
