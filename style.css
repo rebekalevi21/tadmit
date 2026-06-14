@@ -530,6 +530,12 @@ ul {
     animation: float2 5s infinite ease-in-out alternate;
 }
 
+.floating-badge-3 {
+    top: 30px;
+    left: -20px;
+    animation: float1 4.5s infinite ease-in-out alternate;
+}
+
 @keyframes float1 {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
