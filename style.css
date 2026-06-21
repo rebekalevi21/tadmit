@@ -1524,9 +1524,9 @@ ul {
    13. Contact & Network Sections
    ========================================================================== */
 .contact-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 4rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .contact-form-wrapper {
@@ -1535,6 +1535,8 @@ ul {
     border-radius: var(--border-radius-lg);
     padding: 3rem;
     box-shadow: var(--card-shadow);
+    width: 100%;
+    max-width: 750px;
 }
 
 .form-row {
