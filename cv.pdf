@@ -9,9 +9,23 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
 endobj
 4 0 obj
-<< /Length 160 >>
+<< /Length 238 >>
 stream
-BT /F1 24 Tf 72 750 Td (Rebeka Elyah - CV) Tj ET BT /F1 14 Tf 72 700 Td (Please replace this file in your TADMIT folder with your actual cv.pdf document.) Tj ET
+BT
+/F1 24 Tf
+70 700 Td
+(Rebeka Elyah - CV) Tj
+ET
+BT
+/F1 14 Tf
+70 650 Td
+(This is a temporary placeholder for your CV PDF file.) Tj
+ET
+BT
+/F1 12 Tf
+70 600 Td
+(Please place your real cv.pdf file in your TADMIT folder to replace this.) Tj
+ET
 endstream
 endobj
 5 0 obj
@@ -24,9 +38,9 @@ xref
 0000000058 00000 n 
 0000000115 00000 n 
 0000000241 00000 n 
-0000000452 00000 n 
+0000000530 00000 n 
 trailer
 << /Size 6 /Root 1 0 R >>
 startxref
-522
+600
 %%EOF
