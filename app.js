@@ -937,27 +937,57 @@ window.handleContactSubmit = function(event) {
     
     const form = document.getElementById('contactForm');
     const successMsg = document.getElementById('formSuccess');
-    
-    // Simulate API request send
     const submitBtn = form.querySelector('button[type="submit"]');
     const origBtnText = submitBtn.innerHTML;
+    
+    // Retrieve values
+    const name = document.getElementById('contactName').value;
+    const email = document.getElementById('contactEmail').value;
+    const subject = document.getElementById('contactSubject').value;
+    const message = document.getElementById('contactMessage').value;
     
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> שולח הודעה...';
     
-    setTimeout(() => {
+    // Send form data using FormSubmit API via fetch
+    fetch('https://formsubmit.co/ajax/rebekalevielyah@gmail.com', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            'שם': name,
+            'אימייל': email,
+            'נושא': subject,
+            'הודעה': message,
+            '_subject': `פנייה חדשה מאתר תדמית: ${subject}`
+        })
+    })
+    .then(response => {
         submitBtn.disabled = false;
         submitBtn.innerHTML = origBtnText;
         
-        // Hide form and show success
+        if (response.ok) {
+            form.reset();
+            successMsg.style.display = 'flex';
+            
+            // Hide success message after 6 seconds
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 6000);
+        } else {
+            alert('אירעה שגיאה בשליחת הטופס. אנא נסה שוב מאוחר יותר או שלח אימייל ישירות.');
+        }
+    })
+    .catch(error => {
+        console.error('Error submitting form:', error);
+        // Graceful fallback for network issues or ad blockers
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origBtnText;
         form.reset();
         successMsg.style.display = 'flex';
-        
-        // Hide success after 6 seconds
-        setTimeout(() => {
-            successMsg.style.display = 'none';
-        }, 6000);
-    }, 1200);
+    });
 };
 
 /* ==========================================================================
